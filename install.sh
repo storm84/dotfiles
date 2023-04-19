@@ -5,3 +5,4 @@ ln -s ~/.dotfiles/.config/ranger ~/.config
 ln -s ~/.dotfiles/.config/sway ~/.config
 ln -s ~/.dotfiles/.config/wofi ~/.config
 ln -s ~/.dotfiles/.config/waybar ~/.config
+ln -s ~/.dotfiles/.config/helix ~/.config
