@@ -19,6 +19,12 @@ set $term kitty
 set $menu wofi
 ### Output configuration
 #
+set $monitor_internal eDP-1
+
+# laptop lid open/close
+bindswitch lid:on output $monitor_internal disable 
+bindswitch lid:off output $monitor_internal enable
+
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/Pictures/wallpapers/2.jpg fill
 

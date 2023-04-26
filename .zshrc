@@ -127,3 +127,5 @@ alias task=go-task
 
 # Startship prompt
 eval "$(starship init zsh)"
+
+export PATH=$PATH:$HOME/.cargo/bin
