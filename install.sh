@@ -6,4 +6,3 @@ ln -s ~/.dotfiles/.config/sway ~/.config
 ln -s ~/.dotfiles/.config/wofi ~/.config
 ln -s ~/.dotfiles/.config/waybar ~/.config
 ln -s ~/.dotfiles/.config/helix ~/.config
-ln -s ~/.dotfiles/.config/spaceship.zsh ~/.config/spaceship.zsh
