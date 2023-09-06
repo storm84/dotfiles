@@ -100,6 +100,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias cat="bat"
+
+# wifi script
+alias wifi="~/.config/wofi/scripts/wifi_connect.sh"
+
 # docker
 alias dps="docker ps"
 
