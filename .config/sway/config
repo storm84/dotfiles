@@ -28,6 +28,10 @@ bindswitch lid:off output $monitor_internal enable
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/Pictures/wallpapers/2.jpg fill
 
+# monitor setup
+output DP-1 transform 270 pos 0 0
+output HDMI-A-1 pos 1440 560
+
 # remove title 
 default_border pixel 4
 
@@ -39,12 +43,6 @@ gaps inner 5
 #   use -w flag to specify workspaces to autotile
 #   ex: .../autotiling.py -w 1 3 5 7 9
 exec_always ~/.config/sway/scripts/autotiling.py
-
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
 #
