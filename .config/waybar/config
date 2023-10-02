@@ -9,10 +9,12 @@
         "sway/workspaces",
         "sway/mode",
         "sway/scratchpad",
+        "hyprland/workspaces",
         "custom/media"
     ],
     "modules-center": [
         "sway/window",
+        "hyprland/window",
         "clock"
     ],
     "modules-right": [
@@ -152,7 +154,8 @@
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "$HOME/.config/wofi/scripts/wifi_connect.sh"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float

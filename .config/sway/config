@@ -28,9 +28,14 @@ bindswitch lid:off output $monitor_internal enable
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/Pictures/wallpapers/2.jpg fill
 
-# monitor setup
-output DP-1 transform 270 pos 0 0
-output HDMI-A-1 pos 1440 560
+# monitor setup @home
+ output DP-1 transform 270 pos 0 0
+ output HDMI-A-1 pos 1440 560
+
+# monitor setup @office
+# output eDP-1 pos 0 0
+# output HDMI-A-1 pos 1920 0
+# output DP-1 pos 4480 0
 
 # remove title 
 default_border pixel 4
