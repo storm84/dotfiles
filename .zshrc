@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias cat="bat"
+# alias cat="bat"
 
 # wifi script
 alias wifi="~/.config/wofi/scripts/wifi_connect.sh"
@@ -134,3 +134,10 @@ alias task=go-task
 eval "$(starship init zsh)"
 
 export PATH=$PATH:$HOME/.cargo/bin
+
+# add local bin (pip)
+export PATH="${PATH}:${HOME}/.local/bin/"
+
+# pywal
+(cat ~/.cache/wal/sequences &)
+# source ~/.cache/wal/colors-tty.sh
