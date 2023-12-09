@@ -140,4 +140,7 @@ export PATH="${PATH}:${HOME}/.local/bin/"
 
 # pywal
 (cat ~/.cache/wal/sequences &)
-# source ~/.cache/wal/colors-tty.sh
+
+# ls
+alias ls=eza
+
