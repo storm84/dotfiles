@@ -114,7 +114,7 @@ export PATH=$DOTNET_ROOT:$PATH:$DOTNET_ROOT/tools
 alias dnt="dotnet test"
 
 # nvim
-alias vim=nvim
+alias nv=nvim
 
 
 # Load Angular CLI autocompletion.
@@ -143,4 +143,7 @@ export PATH="${PATH}:${HOME}/.local/bin/"
 
 # ls
 alias ls=eza
+
+# vimgolf ruby gem path 
+export PATH=$PATH:$(ruby -e 'print Gem.user_dir')/gems/vimgolf-0.5.0/bin
 

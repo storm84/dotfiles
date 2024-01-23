@@ -8,3 +8,4 @@ ln -s ~/.dotfiles/.config/waybar ~/.config
 ln -s ~/.dotfiles/.config/helix ~/.config
 ln -s ~/.dotfiles/.config/kmonad ~/.config
 ln -s ~/.dotfiles/.config/hypr ~/.config
+ln -s ~/.dotfiles/.config/nvim ~/.config
