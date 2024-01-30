@@ -1,5 +1,5 @@
 local neo_tree_config = function()
-	vim.keymap.set("n", "<leader>e", ":Neotree filesystem reveal left<CR>", {})
+	vim.keymap.set("n", "<leader>e", ":Neotree toggle filesystem reveal left<CR>", {})
 end
 
 return {
