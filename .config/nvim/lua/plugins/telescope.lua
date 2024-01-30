@@ -6,6 +6,8 @@ local telescope_config = function()
 	vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 	vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 	-- TODO setup git pickers and lsp pickers
+  -- git pickers
+  vim.keymap.set("n", "<leader>gl", builtin.git_commits, {})
 end
 
 local ui_select_config = function()
