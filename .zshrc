@@ -114,7 +114,7 @@ export PATH=$DOTNET_ROOT:$PATH:$DOTNET_ROOT/tools
 alias dnt="dotnet test"
 
 # nvim
-alias nv=nvim
+alias vim=nvim
 
 
 # Load Angular CLI autocompletion.
