@@ -27,10 +27,18 @@ end
 
 local lsp_config = function()
 	-- Setup language servers.
+	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 	local lspconfig = require("lspconfig")
-	lspconfig.lua_ls.setup({})
-	lspconfig.csharp_ls.setup({})
-	lspconfig.gopls.setup({})
+
+  lspconfig.lua_ls.setup({
+		capabilities = capabilities,
+	})
+	lspconfig.csharp_ls.setup({
+		capabilities = capabilities,
+	})
+	lspconfig.gopls.setup({
+		capabilities = capabilities,
+	})
 
 	-- Global mappings.
 	-- See `:help vim.diagnostic.*` for documentation on any of the below functions
