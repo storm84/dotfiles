@@ -1,0 +1,130 @@
+local function prefix_with_group(group, desc)
+	return group .. ": " .. desc
+end
+
+local telescope_builtin = require("telescope.builtin")
+
+-- find
+local find_group = "Find"
+vim.keymap.set("n", "<leader>ff", telescope_builtin.find_files, { desc = prefix_with_group(find_group, "file") })
+vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep, { desc = prefix_with_group(find_group, "live grep") })
+vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers, { desc = prefix_with_group(find_group, "buffer") })
+vim.keymap.set("n", "<leader>fh", telescope_builtin.help_tags, { desc = prefix_with_group(find_group, "help tags") })
+-- TODO setup git pickers and lsp pickers
+
+-- git
+local git_group = "git"
+vim.keymap.set(
+	"n",
+	"<leader>gl",
+	telescope_builtin.git_commits,
+	{ desc = prefix_with_group(git_group, "search commits") }
+)
+vim.keymap.set(
+	"n",
+	"<leader>ge",
+	":Neotree toggle float git_status<CR>",
+	{ desc = prefix_with_group(git_group, "toggle status window") }
+)
+
+-- Neotree
+vim.keymap.set("n", "<leader>e", ":Neotree toggle filesystem reveal left<CR>", { desc = "N[e]otree toggle" })
+
+-- LSP Mappings
+-- Global mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set("n", "<leader>E", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+local workspace_group = "workspace"
+local code_group = "code"
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	callback = function(ev)
+		-- Enable completion triggered by <c-x><c-o>
+		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+		-- Buffer local mappings.
+		-- See `:help vim.lsp.*` for documentation on any of the below functions
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "go to [D]eclaration" })
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "go to [d]efinition" })
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = ev.buf, desc = "go to [i]mplementation" })
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = ev.buf, desc = "go to [r]eferences" })
+
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = ev.buf, desc = "hover"})
+		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = ev.buf })
+		vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = ev.buf })
+
+		-- workspace
+    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder,
+      { buffer = ev.buf, desc = prefix_with_group(workspace_group, "[a]dd workspace folder") })
+		vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder,
+      { buffer = ev.buf, desc = prefix_with_group(workspace_group, "[r]emove workspace folder") })
+		vim.keymap.set("n", "<leader>wl", function()
+			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		end, { buffer = ev.buf, desc = prefix_with_group(workspace_group, "[l]ist workspace folders") })
+
+    -- code 
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = ev.buf, desc = "[r]ename"})
+		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = prefix_with_group(code_group, "[c]ode actions") })
+		vim.keymap.set("n", "<leader>cf", function()
+			vim.lsp.buf.format({ async = true })
+		end, { buffer = ev.buf, desc = prefix_with_group(code_group, "code [f]ormatting") })
+	end,
+})
+
+-- dap debug keymaps
+local dap = require("dap")
+vim.keymap.set("n", "<F5>", function()
+	dap.continue()
+end)
+vim.keymap.set("n", "<F10>", function()
+	dap.step_over()
+end)
+vim.keymap.set("n", "<F11>", function()
+	dap.step_into()
+end)
+vim.keymap.set("n", "<F12>", function()
+	dap.step_out()
+end)
+vim.keymap.set("n", "<Leader>b", function()
+	dap.toggle_breakpoint()
+end)
+-- vim.keymap.set('n', '<Leader>B', function() dap.set_breakpoint() end)
+-- vim.keymap.set("n", "<Leader>cp", function()
+-- 	dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+-- end)
+vim.keymap.set("n", "<Leader>dr", function()
+	dap.repl.open()
+end)
+vim.keymap.set("n", "<Leader>dl", function()
+	dap.run_last()
+end)
+-- vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+--   require('dap.ui.widgets').hover()
+-- end)
+-- vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+--   require('dap.ui.widgets').preview()
+-- end)
+-- vim.keymap.set('n', '<Leader>df', function()
+--   local widgets = require('dap.ui.widgets')
+--   widgets.centered_float(widgets.frames)
+-- end)
+-- vim.keymap.set('n', '<Leader>ds', function()
+--   local widgets = require('dap.ui.widgets')
+--   widgets.centered_float(widgets.scopes)
+-- end)
+-- which-key mappings
+
+local wk = require("which-key")
+wk.register({
+	["<leader>f"] = { name = find_group },
+	["<leader>g"] = { name = git_group }, 
+	["<leader>w"] = { name = workspace_group }, -- does not work 
+	["<leader>c"] = { name = code_group }, -- does not work 
+	-- ["<leader>d"] = { name = "TSTS" }, --works
+})
