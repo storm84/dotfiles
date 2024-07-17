@@ -65,24 +65,33 @@ k8s_show_active(){
 
 show_active(){
   case "$tool" in
-    gcp) gcp_show_active 
+    gcp) 
+      gcp_show_active 
     ;;
-    k8s) k8s_show_active
+    k8s) 
+      k8s_show_active
     ;;
-    *) echo "invalid tool"
-       exit 1
+    *) 
+      echo "invalid tool"
+      usage
+      exit 1
     ;;
   esac
 }
 
 set_active(){
+  select_config
   case "$tool" in
-    gcp) gcloud config configurations activate $(select_config) 
+    gcp) 
+      gcloud config configurations activate $s_cfg 
     ;;
-    k8s) kubectl config use-context $(select_config) 
+    k8s) 
+      kubectl config use-context $s_cfg 
     ;;
-    *) echo "invalid tool"
-       exit 1
+    *) 
+      echo "invalid tool"
+      usage
+      exit 1
     ;;
   esac
 }
@@ -123,22 +132,29 @@ select_config(){
       PROMPT=$k8s_prompt
       cfgs=$(k8s_cfgs)
     ;;
-    *) echo "invalid tool"
-       exit 1
+    *)
+      echo "Invalid tool"
+      usage
+      exit 1
     ;;
   esac
   
   case "$picker" in
-    fzf) use_fzf
+    fzf) 
+      s_cfg=$(use_fzf)
     ;;
-    gum) use_gum
+    gum) 
+      s_cfg=$(use_gum)
     ;;
-    choose) use_choose
+    choose) 
+      s_cfg=$(use_choose)
     ;;
-    "") use_any_installed
+    "") 
+      s_cfg=$(use_any_installed)
     ;;
     *) 
       echo "Invalid picker -p argument"
+      usage
       exit 1
     ;;
   esac
@@ -150,26 +166,34 @@ shift 2
 
 while getopts 'hvp:' OPTION ; do
   case "$OPTION" in
-    p) picker=$OPTARG 
+    p) 
+      picker=$OPTARG 
     ;;
-    v) verbose=true
+    v) 
+      verbose=true
     ;;
-    h) usage
-       exit 0
+    h) 
+      usage
+      exit 0
     ;;
-    *) exit 1
+    *) 
+      exit 1
     ;;
   esac
 done
 
 case "$action" in
-  show) show_active
+  show) 
+    show_active
     exit 0
   ;;
-  set) set_active
+  set) 
+    set_active
     exit 0
   ;;
-  *) echo "invalid action" 
+  *) 
+    echo "invalid action" 
+    usage
     exit 1
   ;;
 esac
