@@ -84,9 +84,17 @@ set_active(){
   case "$tool" in
     gcp) 
       gcloud config configurations activate $s_cfg 
+      # trigger custom sketchybar event if installed
+      if hash sketchybar 2>/dev/null; then
+        sketchybar --trigger gcp-changed
+      fi
     ;;
     k8s) 
       kubectl config use-context $s_cfg 
+      # trigger custom sketchybar event if installed
+      if hash sketchybar 2>/dev/null; then
+        sketchybar --trigger k8s-changed
+      fi
     ;;
     *) 
       echo "invalid tool"
