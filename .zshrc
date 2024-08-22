@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias cat="bat"
 
 # wifi script
-alias wifi="~/.config/wofi/scripts/wifi_connect.sh"
+# alias wifi="~/.config/wofi/scripts/wifi_connect.sh"
 
 # docker
 alias dps="docker ps"
@@ -117,15 +117,12 @@ alias dnt="dotnet test"
 alias vim=nvim
 
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
 # GO
-export GOPATH=$HOME/go
-
-
-export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
-alias govm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+# export GOPATH=$HOME/go
+#
+#
+# export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+# alias govm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 # Taskfile runner
 alias task=go-task
@@ -133,17 +130,55 @@ alias task=go-task
 # Startship prompt
 eval "$(starship init zsh)"
 
-export PATH=$PATH:$HOME/.cargo/bin
+# export PATH=$PATH:$HOME/.cargo/bin
 
 # add local bin (pip)
-export PATH="${PATH}:${HOME}/.local/bin/"
+# export PATH="${PATH}:${HOME}/.local/bin/"
 
 # pywal
-(cat ~/.cache/wal/sequences &)
+# (cat ~/.cache/wal/sequences &)
 
 # ls
 alias ls=eza
 
 # vimgolf ruby gem path 
-export PATH=$PATH:$(ruby -e 'print Gem.user_dir')/gems/vimgolf-0.5.0/bin
+# export PATH=$PATH:$(ruby -e 'print Gem.user_dir')/gems/vimgolf-0.5.0/bin
 
+# zsh
+  eval "$(fzf --zsh)"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/marcusstorm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/marcusstorm/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/marcusstorm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/marcusstorm/google-cloud-sdk/completion.zsh.inc'; fi
+
+# psql path
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# nvm 
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/Users/marcusstorm/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
+alias zel=zellij
+alias zl="zellij ls"
+alias za="zellij a"
+
+# add local bin folder to be used for scripts to path
+export PATH="$HOME/bin:$PATH"
+
+# gcloud and kubernetses aliases
+alias config="cloud-config.sh"
+alias k8s="cloud-config.sh k8s set -p fzf"
+alias gcp="cloud-config.sh gcp set -p fzf"
+
+# k9s
+alias k9s="cloud-config.sh k8s set -p fzf && k9s"

@@ -81,6 +81,7 @@ show_active(){
 
 set_active(){
   select_config
+  [[ -z "$s_cfg" ]] && exit 1
   case "$tool" in
     gcp) 
       gcloud config configurations activate $s_cfg 
@@ -109,7 +110,7 @@ use_fzf(){
 }
 
 use_gum(){
-  gum choose --header="$PROMPT" $cfgs 
+  gum choose --header="$PROMPT" $cfgs
 }
 
 use_choose(){
