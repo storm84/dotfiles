@@ -28,6 +28,3 @@ borders active_color=0xff05f2cb inactive_color=0xff494d64 width=5.0 &
 # add sketchybar offset
 yabai -m config external_bar all:32:0
 
-# dropdown terminal (aka "Quake mode")
-# see additional config in ~/.config/skhd/skhdrc
-# yabai -m rule --add title="ddterm" manage=off grid="10:1:0:0:1:4"
