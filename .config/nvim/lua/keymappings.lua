@@ -78,9 +78,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, { buffer = ev.buf, desc = prefix_with_group(code_group, "code [f]ormatting") })
 
     require("which-key")
-      .register({
-        ["<leader>w"] = { name = workspace_group },
-        ["<leader>c"] = { name = code_group },
+      .add({
+        {"<leader>w", group = workspace_group },
+        {"<leader>c", group = code_group },
       }, {buffer = ev.buf})
 	end,
 })
@@ -129,10 +129,10 @@ end, {desc = prefix_with_group(debug_group, "run [l]ast")})
 -- which-key mappings
 
 local wk = require("which-key")
-wk.register({
-	["<leader>f"] = { name = find_group },
-	["<leader>g"] = { name = git_group },
-	["<leader>w"] = { name = workspace_group },
-	["<leader>c"] = { name = code_group },
-	["<leader>d"] = { name = debug_group },
+wk.add({
+  { "<leader>f", group = find_group },
+  { "<leader>g", group = git_group },
+  { "<leader>w", group = workspace_group },
+  { "<leader>c", group = code_group },
+  { "<leader>d", group = debug_group },
 })
