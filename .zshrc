@@ -125,7 +125,7 @@ alias vim=nvim
 # alias govm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 # Taskfile runner
-alias task=go-task
+# alias task=go-task
 
 # Startship prompt
 eval "$(starship init zsh)"
@@ -182,3 +182,18 @@ alias gcp="cloud-config.sh gcp set -p fzf"
 
 # k9s
 alias k9s="cloud-config.sh k8s set -p fzf && k9s"
+
+# github pr
+alias prr="gh search prs --review-requested=@me --state=open --json title,state,author,url,updatedAt | jq -r '.[] | "\""[\(.updatedAt)] \(.author.login): [\(.title)](\(.url))"\""'"
+alias prm="gh search prs --author=@me --state=open --json title,state,author,url,updatedAt | jq -r '.[] | "\""[\(.updatedAt)] \(.author.login): [\(.title)](\(.url))"\""'"
+
+# github workflow run
+alias ghr="gh workflow run --ref \$(git rev-parse --abbrev-ref HEAD)"
+
+export PATH="/opt/homebrew/opt/protobuf@3/bin:$PATH"
+
+# Created by `pipx` on 2024-09-26 06:13:52
+export PATH="$PATH:/Users/marcusstorm/.local/bin"
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
