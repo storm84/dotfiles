@@ -6,6 +6,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.api.nvim_set_option("clipboard","unnamed")
+
 
 vim.cmd("set nocompatible")
 vim.cmd("filetype plugin on")
