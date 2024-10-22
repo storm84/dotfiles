@@ -189,6 +189,7 @@ alias prm="gh search prs --author=@me --state=open --json title,state,author,url
 
 # github workflow run
 alias ghr="gh workflow run --ref \$(git rev-parse --abbrev-ref HEAD)"
+alias ghw="gh run watch"
 
 export PATH="/opt/homebrew/opt/protobuf@3/bin:$PATH"
 
@@ -197,3 +198,6 @@ export PATH="$PATH:/Users/marcusstorm/.local/bin"
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# init zoxide
+eval "$(zoxide init zsh)"
