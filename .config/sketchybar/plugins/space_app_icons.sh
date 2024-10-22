@@ -4,7 +4,7 @@ if [ "$SENDER" = "space_windows_change" ]; then
   source $CONFIG_DIR/plugins/icon_map.sh
   space="$(echo "$INFO" | jq -r '.space')"
   apps="$(echo "$INFO" | jq -r '.apps | keys[]')"
-
+  echo "im here"
   icon_strip=" "
   if [ "${apps}" != "" ]; then
     while read -r app
@@ -18,3 +18,4 @@ if [ "$SENDER" = "space_windows_change" ]; then
 
   sketchybar --set space.$space label="$icon_strip"
 fi
+
