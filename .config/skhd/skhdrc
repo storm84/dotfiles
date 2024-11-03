@@ -53,3 +53,6 @@
 # open a terminal (alacritty)
 cmd - return : open -na /Applications/alacritty.app
 
+# reload sketchybar
+cmd - r : sketchybar --reload
+
