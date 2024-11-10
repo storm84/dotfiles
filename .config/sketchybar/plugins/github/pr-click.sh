@@ -30,7 +30,7 @@ fi
 DATA=$(<$FILE_PATH)
 
 # use choose to select PR, exit if none chosen
-SELECTED=$(echo $DATA | jq -r '.[] | "[\(.repository.name)] \(.author.login) - #\(.number) \(.title)"' | choose -i -p "$PROMPT") \
+SELECTED=$(echo $DATA | jq -r '.[] | "[\(.repository.name)] \(.author.login) - #\(.number) \(.title)"' | choose -i -w 50 -p "$PROMPT") \
   || exit 1
 
 # get the URL from the selected json array item
