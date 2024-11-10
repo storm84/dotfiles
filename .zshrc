@@ -70,7 +70,7 @@ ZSH_THEME="nanotech"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-kubectl-prompt)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-kubectl-prompt zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -183,8 +183,12 @@ alias gcp="cloud-config.sh gcp set -p fzf"
 # k9s
 alias k9s="cloud-config.sh k8s set -p fzf && k9s"
 
+# port-forward
+alias kpf="cloud-config.sh k8s set -p fzf && port-forward.sh"
+
 # github pr
 alias prr="gh search prs --review-requested=@me --state=open --json title,state,author,url,updatedAt | jq -r '.[] | "\""[\(.updatedAt)] \(.author.login): [\(.title)](\(.url))"\""'"
+alias prd="gh search prs --reviewed-by=@me --state=open --json title,state,author,url,updatedAt | jq -r '.[] | "\""[\(.updatedAt)] \(.author.login): [\(.title)](\(.url))"\""'"
 alias prm="gh search prs --author=@me --state=open --json title,state,author,url,updatedAt | jq -r '.[] | "\""[\(.updatedAt)] \(.author.login): [\(.title)](\(.url))"\""'"
 
 # github workflow run
@@ -201,3 +205,10 @@ eval "$(pyenv virtualenv-init -)"
 
 # init zoxide
 eval "$(zoxide init zsh)"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+# reset_borders
+alias reset_borders="kill "\""$(ps -ax | awk '/[b]orders/{print $1}')"\"" &> /dev/null | (borders active_color=0xfff6fecb inactive_color=0xff494d64 width=5.0 &)"
