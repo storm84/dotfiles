@@ -185,6 +185,10 @@ alias k9s="cloud-config.sh k8s set -p fzf && k9s"
 
 # port-forward
 alias kpf="cloud-config.sh k8s set -p fzf && port-forward.sh"
+alias pf="port-forward.sh"
+
+# munin-api
+alias munin="munin-api.sh"
 
 # github pr
 alias prr="gh search prs --review-requested=@me --state=open --json title,state,author,url,updatedAt | jq -r '.[] | "\""[\(.updatedAt)] \(.author.login): [\(.title)](\(.url))"\""'"
@@ -212,3 +216,11 @@ eval "$(atuin init zsh)"
 
 # reset_borders
 alias reset_borders="kill "\""$(ps -ax | awk '/[b]orders/{print $1}')"\"" &> /dev/null | (borders active_color=0xfff6fecb inactive_color=0xff494d64 width=5.0 &)"
+
+# restish
+# autoload -U compinit; compinit
+
+# source .env file
+set -a; source .env; set +a
+
+
