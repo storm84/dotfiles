@@ -1,10 +1,10 @@
 SCRIPT=$( basename "$0" )
 
 VERSION="0.0.1"
-TOKEN_FILE="$HOME/.munin_token"
 
-USERNAME=$EB_AUTH_USER
-PASSWORD=$EB_AUTH_PASS
+TOKEN_FILE="$HOME/.munin_token"   # set path token file  
+USERNAME=$EB_AUTH_USER            # set auth user (use admin account else -c flag wont work)
+PASSWORD=$EB_AUTH_PASS            # set auth pass
 
 function usage
 {
