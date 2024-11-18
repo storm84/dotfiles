@@ -25,7 +25,7 @@ function usage
     printf "%s\\n" "${txt[@]}"
 }
 
-ENVIRONMENT=api #prod default
+ENVIRONMENT=prod #prod default
 OPERATION=all
 AUTH_ONLY=false
 
@@ -41,10 +41,23 @@ while getopts 'ahle:c:' OPTION ; do
 done
 shift $(($OPTIND -1))
 
+# Validate -e flag value
+if [[ "$ENVIRONMENT" != "dev" && "$ENVIRONMENT" != "test" && "$ENVIRONMENT" != "stage" && "$ENVIRONMENT" != "prod" ]]; then
+    echo "Error: Invalid environment '$ENVIRONMENT'. Allowed values are: dev, test, stage, prod."
+    usage
+    exit 1
+fi
+
+if [[ "$ENVIRONMENT" == "prod" ]]; then
+    URL_ENV="api"
+  else
+    URL_ENV=$ENVIRONMENT
+fi
+ENV_TOKEN_FILE=$TOKEN_FILE"_"$ENVIRONMENT
 INPUT=$1
 
 function authenticate {
-    TOKEN=$(curl -s -X POST "https://$ENVIRONMENT.earlybird.se/auth/token" \
+    TOKEN=$(curl -s -X POST "https://$URL_ENV.earlybird.se/auth/token" \
         -H "Content-Type: application/json" \
         -d "{\"username\": \"$USERNAME\", \"password\": \"$PASSWORD\"}" | jq -r '.token')
 
@@ -53,8 +66,8 @@ function authenticate {
         exit 1
     fi
 
-    echo "$TOKEN" > "$TOKEN_FILE"
-    echo "Token saved to $TOKEN_FILE."
+    echo "$TOKEN" > "$ENV_TOKEN_FILE"
+    echo "Token saved to $ENV_TOKEN_FILE."
 }
 
 if $AUTH_ONLY; then
@@ -62,12 +75,12 @@ if $AUTH_ONLY; then
     exit 0
 fi
 
-if [ ! -f "$TOKEN_FILE" ]; then
+if [ ! -f "$ENV_TOKEN_FILE" ]; then
     echo "Token file not found. Authenticating..."
     authenticate
 fi
 
-TOKEN=$(cat "$TOKEN_FILE")
+TOKEN=$(cat "$ENV_TOKEN_FILE")
 
 if [ -z "$INPUT" ]; then
     echo "Error: Tracking ID is required."
@@ -76,11 +89,11 @@ if [ -z "$INPUT" ]; then
 fi
 
 QUERY_PARAMS="?language=en"
-if [[ -n CUSTOMER ]]; then
+if [[ -n $CUSTOMER ]]; then
   QUERY_PARAMS+="&customer-id=$CUSTOMER"
 fi
 
-URL="https://$ENVIRONMENT.earlybird.se/v1/status/$INPUT/$OPERATION$QUERY_PARAMS"
+URL="https://$URL_ENV.earlybird.se/v1/status/$INPUT/$OPERATION$QUERY_PARAMS"
 
 RESPONSE=$(curl -s -w "\n%{http_code}" -X GET "$URL" \
   -H "Authorization: Bearer $TOKEN")
@@ -91,6 +104,5 @@ STATUS_CODE=$(echo "$RESPONSE" | tail -n 1)  # Last line is the status code
 if [ "$STATUS_CODE" -eq 200 ]; then
     echo "$BODY" | jq || echo "Error: Invalid JSON response"
 else
-    ERROR_MSG=$(echo "$BODY" | jq -r '.error.message // "Unknown error"')
-    echo "HTTP Status Code: $STATUS_CODE - $ERROR_MSG"
+    echo "HTTP Status Code: $STATUS_CODE - $BODY"
 fi
