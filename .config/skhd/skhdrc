@@ -53,6 +53,9 @@
 # open a terminal (alacritty)
 cmd - return : open -na /Applications/alacritty.app
 
+# open yazi in new terminal window
+cmd - e : open -na /Applications/alacritty.app --args -e yazi
+
 # reload sketchybar
 cmd - r : sketchybar --reload
 
