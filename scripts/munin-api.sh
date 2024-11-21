@@ -21,7 +21,6 @@ function usage
 "         customer id if you want to mimic what the customer can see )"
 "  -a     Authenticate and save token to disk."
 ""
-"Example:"
     )
 
     printf "%s\\n" "${txt[@]}"
