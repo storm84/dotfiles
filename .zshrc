@@ -1,3 +1,5 @@
+
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -204,13 +206,19 @@ export PATH="/opt/homebrew/opt/protobuf@3/bin:$PATH"
 # Created by `pipx` on 2024-09-26 06:13:52
 export PATH="$PATH:/Users/marcusstorm/.local/bin"
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# run this only for mac for now (part of configuring python for nvim)
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 # init zoxide
 eval "$(zoxide init zsh)"
 
-. "$HOME/.atuin/bin/env"
+# atuin
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  . "$HOME/.atuin/bin/env"
+fi
 
 eval "$(atuin init zsh)"
 
