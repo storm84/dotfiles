@@ -13,3 +13,4 @@ ln -s ~/.dotfiles/.config/skhd ~/.config
 ln -s ~/.dotfiles/.config/sketchybar ~/.config
 ln -s ~/.dotfiles/.config/yabai ~/.config
 ln -s ~/.dotfiles/.config/aerospace ~/.config
+ln -s ~/.dotfiles/.config/alacritty ~/.config
