@@ -21,7 +21,7 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "~/Documents/obsidian-notes/MyVault",
+        path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/storm-vault",
       },
     },
 

@@ -1,4 +1,4 @@
-return {
+local greeter =  {
   'goolord/alpha-nvim',
   dependencies = {
     'echasnovski/mini.icons',
@@ -81,3 +81,7 @@ return {
     alpha.setup(theme.config)
   end
 }
+
+
+--return greeter
+return {}

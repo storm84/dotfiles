@@ -33,7 +33,16 @@ local cmp_config = function()
       { name = "buffer" },
     }),
   })
+
+  cmp.setup.filetype({ "sql" }, {
+    sources = {
+      { name = "vim-dadbod-completion" },
+      { name = "buffer" },
+    },
+  })
+
 end
+
 
 local luasnip_config = function()
   require("luasnip.loaders.from_vscode").lazy_load()
