@@ -225,10 +225,10 @@ eval "$(atuin init zsh)"
 # reset_borders
 alias reset_borders="kill "\""$(ps -ax | awk '/[b]orders/{print $1}')"\"" &> /dev/null | (borders active_color=0xfff6fecb inactive_color=0xff494d64 width=5.0 &)"
 
-# restish
-# autoload -U compinit; compinit
-
 # source .env file
 set -a; source .env; set +a
 
 
+if [[ "$(uname -s)" == "Linux" ]]; then
+  source /usr/share/nvm/init-nvm.sh
+fi

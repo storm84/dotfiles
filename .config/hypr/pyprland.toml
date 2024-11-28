@@ -11,8 +11,8 @@ size = "75% 60%"
 
 [scratchpads.volume]
 animation = "fromRight"
-command = "pavucontrol"
-class = "pavucontrol"
+command = "flatpak run com.saivert.pwvucontrol"
+class = "pwvucontrol"
 lazy = true
 size = "40% 90%"
 unfocus = "hide"
