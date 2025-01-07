@@ -50,8 +50,10 @@
 # launch applications
 ###################################
 
-# open a terminal (alacritty)
-cmd - return : open -na /Applications/alacritty.app
+# open a terminal 
+# cmd - return : open -na /Applications/alacritty.app
+cmd - return : open -na /Applications/Ghostty.app
+
 
 # open yazi in new terminal window
 cmd - e : open -na /Applications/alacritty.app --args -e yazi

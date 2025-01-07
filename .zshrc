@@ -201,6 +201,9 @@ alias prm="gh search prs --author=@me --state=open --json title,state,author,url
 alias ghr="gh workflow run --ref \$(git rev-parse --abbrev-ref HEAD)"
 alias ghw="gh run watch"
 
+# github copilot aliases (ghce ghcs)
+eval "$(gh copilot alias -- zsh)"
+
 export PATH="/opt/homebrew/opt/protobuf@3/bin:$PATH"
 
 # Created by `pipx` on 2024-09-26 06:13:52
@@ -225,8 +228,8 @@ eval "$(atuin init zsh)"
 # reset_borders
 alias reset_borders="kill "\""$(ps -ax | awk '/[b]orders/{print $1}')"\"" &> /dev/null | (borders active_color=0xfff6fecb inactive_color=0xff494d64 width=5.0 &)"
 
-# source .env file
-set -a; source .env; set +a
+# source user .env file
+set -a; source $HOME/.env; set +a
 
 
 if [[ "$(uname -s)" == "Linux" ]]; then
