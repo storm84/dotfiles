@@ -13,7 +13,8 @@ source $ZSH/oh-my-zsh.sh
 # alias wifi="~/.config/wofi/scripts/wifi_connect.sh"
 
 # docker
-alias dps="docker ps"
+alias dps="docker ps --format '{{.Names}}\t{{.ID}}\t{{.Status}}'"
+alias dpsl="docker ps --format '{{.Names}}\n\tContainer ID: {{.ID}}\n\tCommand: {{.Command}}\n\tImage: {{.Image}}\n\tCreatedAt: {{.CreatedAt}}\n\tStatus: {{.Status}}'"
 
 # dotnet
 export DOTNET_ROOT=$HOME/.dotnet
@@ -97,6 +98,9 @@ alias pf="port-forward.sh"
 # munin-api
 alias munin="munin-api.sh"
 
+# git
+alias git-clean-branches='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}"'
+
 # github pr
 alias prr="gh search prs --review-requested=@me --state=open --json title,state,author,url,updatedAt | jq -r '.[] | "\""[\(.updatedAt)] \(.author.login): [\(.title)](\(.url))"\""'"
 alias prd="gh search prs --reviewed-by=@me --state=open --json title,state,author,url,updatedAt | jq -r '.[] | "\""[\(.updatedAt)] \(.author.login): [\(.title)](\(.url))"\""'"
@@ -140,3 +144,6 @@ set -a; source $HOME/.env; set +a
 # if [[ "$(uname -s)" == "Linux" ]]; then
 #   source /usr/share/nvm/init-nvm.sh
 # fi
+
+# istioctl
+export PATH=$HOME/.istioctl/bin:$PATH
