@@ -147,3 +147,6 @@ set -a; source $HOME/.env; set +a
 
 # istioctl
 export PATH=$HOME/.istioctl/bin:$PATH
+
+# vpn
+alias vpn="vpn.sh"
