@@ -7,7 +7,7 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
-# alias cat="bat"
+export EDITOR=nvim
 
 # wifi script
 # alias wifi="~/.config/wofi/scripts/wifi_connect.sh"
@@ -150,3 +150,7 @@ export PATH=$HOME/.istioctl/bin:$PATH
 
 # vpn
 alias vpn="vpn.sh"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"

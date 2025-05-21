@@ -6,9 +6,6 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "sway/workspaces",
-        "sway/mode",
-        "sway/scratchpad",
         "hyprland/workspaces",
         "custom/media",
         "sway/window",
@@ -33,22 +30,23 @@
         //"clock",
         "tray"
     ],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate",
+      "format-icons": {
+        "1": "Q",
+        "2": "W",
+        "3": "E",
+        "4": "R",
+        "5": "T",
+        "6": "Y",
+        "7": "U",
+        "8": "I",
+        "9": "O",
+        "10": "P",
+      },
+      "sort-by-number": true
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -175,7 +173,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "flatpak run com.saivert.pwvucontrol"
+        "on-click": "pwvucontrol"
     },
     "custom/media": {
         "format": "{icon} {}",
