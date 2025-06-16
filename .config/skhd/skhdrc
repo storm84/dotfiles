@@ -52,8 +52,8 @@
 
 # open a terminal 
 # cmd - return : open -na /Applications/alacritty.app
-cmd - return : open -na /Applications/Ghostty.app
-
+# cmd - return : open -na /Applications/Ghostty.app
+cmd - return : osascript ~/.config/skhd/open_ghostty.scpt
 
 # open yazi in new terminal window
 cmd - e : open -na /Applications/alacritty.app --args -e yazi
