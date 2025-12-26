@@ -287,3 +287,29 @@ label:focus {
 #scratchpad.empty {
 	background-color: transparent;
 }
+#custom-github-start{
+  padding-left: 20px;
+}
+#custom-github-pr-reviewed,
+#custom-github-pr-requested,
+#custom-github-pr-created{
+  padding-left: 6px;
+  padding-right: 6px;
+}
+#custom-github-pr-reviewed.none,
+#custom-github-pr-requested.none,
+#custom-github-pr-created.none {
+  color: #bbbbbb;
+}
+
+#custom-github-pr-reviewed.few,
+#custom-github-pr-requested.few,
+#custom-github-pr-created.few {
+  color: white;
+}
+
+#custom-github-pr-reviewed.many,
+#custom-github-pr-requested.many,
+#custom-github-pr-created.many {
+  color: red;
+}

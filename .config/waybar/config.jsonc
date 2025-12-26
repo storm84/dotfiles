@@ -4,15 +4,20 @@
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
         "custom/media",
-        "sway/window",
         "hyprland/window"
     ],
     "modules-center": [
-        "clock"
+        "clock",
+        "custom/github-start",
+        "custom/github-pr-created",
+        "custom/spacer",
+        "custom/github-pr-requested",
+        "custom/spacer",
+        "custom/github-pr-reviewed",
+        "custom/github-end"
     ],
     "modules-right": [
         "mpd",
@@ -23,11 +28,8 @@
         "memory",
         "temperature",
         "backlight",
-        //"keyboard-state",
-        //"sway/language",
         "battery",
         "battery#bat2",
-        //"clock",
         "tray"
     ],
     "hyprland/workspaces": {
@@ -55,16 +57,6 @@
             "locked": "",
             "unlocked": ""
         }
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -100,11 +92,9 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -116,22 +106,17 @@
     "format": "{}% <span size='x-large' rise='-1500'></span>"
 },
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C <span size='x-large' rise='-1500'>{icon}</span>",
         "format-icons": ["", "", ""]
     },
     "backlight": {
-        // "device": "acpi_video1",
         "format": "{percent}% <span size='x-large' rise='-1500'>{icon}</span>",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "tooltip": false
     },
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
@@ -139,15 +124,12 @@
         "format-charging": "{capacity}% <span size='x-large' rise='-1500'></span>",
         "format-plugged": "{capacity}% <span size='x-large' rise='-1500'></span>",
         "format-alt": "{time} <span size='x-large' rise='-1500'>{icon}</span>",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "battery#bat2": {
         "bat": "BAT2"
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) <span size='x-large' rise='-1500'></span>",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
@@ -157,7 +139,6 @@
         "on-click-right": "$HOME/.config/wofi/scripts/wifi_connect.sh"
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
         "format": "{volume}% <span size='x-large' rise='-1500'>{icon}</span> {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
@@ -185,7 +166,39 @@
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/github-start": {
+        "format": " ["
+    },
+    "custom/github-pr-created": {
+      "exec": "~/.config/waybar/github/pr.sh created",
+      "interval": 300,
+      "on-click": "~/.config/waybar/github/pr-click.sh created",
+      "return-type": "json",
+      "tooltip": true,
+      "format": " {text}"
+    },
+    "custom/github-pr-requested": {
+      "exec": "~/.config/waybar/github/pr.sh requested",
+      "interval": 300,
+      "on-click": "~/.config/waybar/github/pr-click.sh requested",
+      "return-type": "json",
+      "tooltip": true,
+      "format": " {text}"
+    },
+    "custom/github-pr-reviewed": {
+      "exec": "~/.config/waybar/github/pr.sh reviewed",
+      "interval": 300,
+      "on-click": "~/.config/waybar/github/pr-click.sh reviewed",
+      "return-type": "json",
+      "tooltip": true,
+      "format": " {text}"
+    },
+    "custom/github-end": {
+        "format": "]"
+    },
+    "custom/spacer": {
+        "format": "|"
     }
 }
 
