@@ -111,7 +111,7 @@ alias ghr="gh workflow run --ref \$(git rev-parse --abbrev-ref HEAD)"
 alias ghw="gh run watch"
 
 # github copilot aliases (ghce ghcs)
-eval "$(gh copilot alias -- zsh)"
+# eval "$(gh copilot alias -- zsh)"
 
 export PATH="/opt/homebrew/opt/protobuf@3/bin:$PATH"
 
@@ -154,3 +154,16 @@ alias vpn="vpn.sh"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+
+# Created by `pipx` on 2026-02-14 16:13:16
+export PATH="$PATH:/home/marcus/.local/bin"
+
+# llm
+alias llmdiff='git diff | llm | glow'
+alias llmcommit='git diff --staged | llm "Write commit message"'
+llmsay() {
+  spd-say "$(llm "$*")"
+}
+llmg() {
+  llm "$*" | glow
+}

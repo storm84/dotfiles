@@ -2,3 +2,5 @@ mode=drun,run
 allow_images=true
 insensitive=true
 gtk_dark=true
+key_expand=Right
+key_unexpand=Left
